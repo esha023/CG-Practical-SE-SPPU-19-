@@ -4,6 +4,7 @@
 using namespace std;
 
 class Line
+//Using DDA Line drawing algorithm
 {
 	int x, y, dx, dy, xi, yi, len;
 	public:
@@ -43,6 +44,7 @@ class Line
 };
 
 class Circle
+//Using Bresemham Circle Drawing algorithm
 {
 	public:
 		void cir(int x, int y, int rad)
@@ -50,7 +52,8 @@ class Circle
 			int x1 = 0;
 			int y1 = rad;
 			putpixel(x1, y1, 6);
-			
+
+			//Decision making parameter
 			int pk = 3 - 2*rad;
 			
 			while(x1<=y1)
@@ -64,8 +67,10 @@ class Circle
 					pk = pk + (4*(x1-y1)) + 10;
 					y1--;
 				}
+				//Always increament x1
 				x1++;
-				
+
+				//According to octant
 				putpixel(x+x1, y+y1, 3);
 				putpixel(x-x1, y+y1, 3);
 				putpixel(x+x1, y-y1, 3);
@@ -85,14 +90,20 @@ int main()
 	Circle c;
 	int gd = DETECT, gm = DETECT;
 	initgraph(&gd, &gm, NULL);
+
+	//Plotting main square
 	l.lin(100,100,400,100);
  	l.lin(100,400,400,400);
  	l.lin(100,100,100,400);
  	l.lin(400,100,400,400);
+
+	//Plotting diamond inside square
  	l.lin(250,100,100,250);
  	l.lin(100,250,250,400);
  	l.lin(250,400,400,250);
  	l.lin(250,100,400,250);
+
+	//Circle inside rhombus
  	c.cir(250,250,100);
  	
  	delay(500);
